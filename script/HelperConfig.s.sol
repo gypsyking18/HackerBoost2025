@@ -23,11 +23,8 @@ contract HelperConfig is CodeConstants, Script {
 
     struct NetworkConfig {
         address priceFeed;
-        address usdcAddress;
         uint256 campaignIdCounter;
         uint256 initialVotingDuration;
-        address payable _ethPoolAddress;
-        address _usdcPoolAddress;
         uint256 _campaignDuration;
         address daoAddress;
     }
@@ -62,11 +59,8 @@ contract HelperConfig is CodeConstants, Script {
     function getMainnetEthConfig() public pure returns (NetworkConfig memory mainnetNetworkConfig) {
         mainnetNetworkConfig = NetworkConfig({
             priceFeed: 0x986b5E1e1755e3C2440e960477f25201B0a8bbD4,
-            usdcAddress: 0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6,
             campaignIdCounter: 0,
             initialVotingDuration: 13 * 24 * 60 * 60, // 13 days in seconds
-            _ethPoolAddress: payable(0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6),
-            _usdcPoolAddress: 0xA3915e59148c67AAaE39F5D73Bb49fdd22C00124,
             _campaignDuration: 120 * 24 * 60 * 60, // 120 days in seconds
             daoAddress: 0x095418A82BC2439703b69fbE1210824F2247D77c
         });
@@ -75,11 +69,8 @@ contract HelperConfig is CodeConstants, Script {
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory sepoliaNetworkConfig) {
         sepoliaNetworkConfig = NetworkConfig({
             priceFeed: 0x986b5E1e1755e3C2440e960477f25201B0a8bbD4,
-            usdcAddress: 0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6,
             campaignIdCounter: 0,
             initialVotingDuration: 13 * 24 * 60 * 60, // 13 days in seconds
-            _ethPoolAddress: payable(0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6),
-            _usdcPoolAddress: 0xA3915e59148c67AAaE39F5D73Bb49fdd22C00124,
             _campaignDuration: 120 * 24 * 60 * 60, // 120 days in seconds
             daoAddress: 0x095418A82BC2439703b69fbE1210824F2247D77c
         });
@@ -88,11 +79,8 @@ contract HelperConfig is CodeConstants, Script {
     function getSepoliaArbConfig() public pure returns (NetworkConfig memory arbNetworkConfig) {
         arbNetworkConfig = NetworkConfig({
             priceFeed: 0x986b5E1e1755e3C2440e960477f25201B0a8bbD4,
-            usdcAddress: 0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6,
             campaignIdCounter: 0,
             initialVotingDuration: 13 * 24 * 60 * 60, // 13 days in seconds
-            _ethPoolAddress: payable(0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6),
-            _usdcPoolAddress: 0xA3915e59148c67AAaE39F5D73Bb49fdd22C00124,
             _campaignDuration: 120 * 24 * 60 * 60, // 120 days in seconds
             daoAddress: 0x095418A82BC2439703b69fbE1210824F2247D77c
         });
@@ -109,11 +97,8 @@ contract HelperConfig is CodeConstants, Script {
 
         activeNetworkConfig = NetworkConfig({
             priceFeed: address(mockPriceFeed),
-            usdcAddress: 0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6,
             campaignIdCounter: 0,
             initialVotingDuration: 13 * 24 * 60 * 60, // 13 days in seconds
-            _ethPoolAddress: payable(0xB7489f4d000F30410f75b7FD7a03e3F27c6268b6),
-            _usdcPoolAddress: 0xA3915e59148c67AAaE39F5D73Bb49fdd22C00124,
             _campaignDuration: 120 * 24 * 60 * 60, // 120 days in seconds
             daoAddress: 0x095418A82BC2439703b69fbE1210824F2247D77c
         });

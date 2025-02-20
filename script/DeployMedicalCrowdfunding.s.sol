@@ -14,11 +14,8 @@ contract DeployMedicalCrowdfunding is Script {
         vm.startBroadcast();
         MedicalCrowdfunding medicalCrowdfunding = new MedicalCrowdfunding(
             config.priceFeed,
-            config.usdcAddress,
             config.campaignIdCounter,
             config.initialVotingDuration,
-            config._ethPoolAddress,
-            config._usdcPoolAddress,
             config._campaignDuration,
             config.daoAddress
         );

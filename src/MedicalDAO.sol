@@ -10,11 +10,13 @@ error MedicalDAO__AlreadyDAOMember();
 contract MedicalDAO is ERC721Enumerable, Ownable {
     uint256 public constant MAX_INITIAL_MEMBERS = 50;
     uint256 public constant MIN_DIFFERENT_CAMPAIGN_DEPOSITS_FOR_MEMBERSHIP = 60;
-    uint256 public constant MIN_DONATION_AMOUNT = 10; //Minimum donation (in USD units) required per campaign for membership qualification.
+    uint256 public constant MIN_DONATION_AMOUNT = 30; //Minimum donation (in USD units) required per campaign for membership qualification.
 
     uint256 private _tokenIdCounter;
+    address[] public daoMembers;
 
     mapping(address => bool) public isMember;
+    mapping(address => uint256) public daoRewards;
     mapping(address => mapping(uint256 => bool)) public campaignDeposits; // Tracks unique campaign deposits
     mapping(address => uint256) public uniqueCampaignDepositsCount;
     mapping(address => mapping(uint256 => uint256)) public donorCampaignDonationTotal; //Keeps track of how much a donor has donated to each campaign.
@@ -31,6 +33,7 @@ contract MedicalDAO is ERC721Enumerable, Ownable {
         if (isMember[member]) {
             revert MedicalDAO__AlreadyDAOMember();
         }
+        daoMembers.push(member);
         _mintMember(member);
     }
 
