@@ -15,9 +15,12 @@ fs_permissions = [{ access = "read", path = "./broadcast" }]
 [etherscan]
 mainnet = { key = "${ETHERSCAN_API_KEY}" }
 sepolia = { key = "${ETHERSCAN_API_KEY}" }
+arbitrum_sepolia = { key = "${ARBISCAN_API_KEY}" }
 
 [rpc_endpoints]
 sepolia = "${SEPOLIA_RPC_URL}"
+arbitrum = "${ARBITRUM_RPC_URL}"
+arbitrum-sepolia = { key = "${ARBISCAN_API_KEY}", url="https://api-sepolia.arbiscan.io/api" }
 zksync-local = "http://127.0.0.1:8011"
 
 [invariant]

@@ -398,4 +398,123 @@ contract MedicalCrowdfunding is ReentrancyGuard {
         }
         emit CampaignStatusUpdated(campaignId, campaign.status);
     }
+
+    /**
+     * @notice Returns campaign details by campaign ID
+     */
+    function getCampaign(uint256 campaignId)
+        external
+        view
+        returns (
+            address payable patientEthAddress,
+            uint256 goalAmountInUSD,
+            uint256 raisedAmountInUSD,
+            Description memory description,
+            uint256 deadline,
+            CampaignStatus status,
+            CampaignCategory category,
+            Documents memory documents
+        )
+    {
+        Campaign storage campaign = campaigns[campaignId];
+        return (
+            campaign.patientEthAddress,
+            campaign.goalAmountInUSD,
+            campaign.raisedAmountInUSD,
+            campaign.description,
+            campaign.deadline,
+            campaign.status,
+            campaign.category,
+            campaign.documents
+        );
+    }
+
+    /**
+     * @notice Returns the total number of campaigns created
+     */
+    function getTotalCampaigns() external view returns (uint256) {
+        return s_campaignIdCounter;
+    }
+
+    /**
+     * @notice Returns donor's total donated amount
+     */
+    function getTotalDonatedByAddress(address donor) external view returns (uint256) {
+        return s_addressToAmountDonated[donor];
+    }
+
+    /**
+     * @notice Returns the campaign IDs a donor has contributed to
+     */
+    function getDonorCampaigns(address donor) external view returns (uint256[] memory) {
+        return donorCampaigns[donor];
+    }
+
+    /**
+     * @notice Returns the number of yes, no, and total votes for a campaign
+     */
+    function getCampaignVotes(uint256 campaignId)
+        external
+        view
+        returns (uint256 yesVotes, uint256 noVotes, uint256 totalVotes)
+    {
+        return (s_campaignYesVotes[campaignId], s_campaignNoVotes[campaignId], s_campaignTotalVotes[campaignId]);
+    }
+
+    /**
+     * @notice Checks if an address has voted on a campaign
+     */
+    function hasVotedOnCampaign(uint256 campaignId, address voter) external view returns (bool) {
+        return s_hasVoted[campaignId][voter];
+    }
+
+    /**
+     * @notice Returns details of a fee proposal
+     */
+    function getFeeProposal(uint256 proposalId)
+        external
+        view
+        returns (
+            uint256 proposedFee,
+            uint256 yesVotes,
+            uint256 noVotes,
+            uint256 startTime,
+            uint256 endTime,
+            bool executed,
+            uint256 totalMembersAtCreation
+        )
+    {
+        FeeProposal storage proposal = feeProposals[proposalId];
+        return (
+            proposal.proposedFee,
+            proposal.yesVotes,
+            proposal.noVotes,
+            proposal.startTime,
+            proposal.endTime,
+            proposal.executed,
+            proposal.totalMembersAtCreation
+        );
+    }
+
+    /**
+     * @notice Returns the total number of fee proposals created
+     */
+    function getTotalFeeProposals() external view returns (uint256) {
+        return feeProposalCounter;
+    }
+
+
+    /**
+     * @notice Returns the current service fee percentage
+     */
+    function getServiceFeePercentage() external view returns (uint256) {
+        return serviceFeePercentage;
+    }
+
+    /**
+     * @notice Returns the contract owner
+     */
+    function getOwner() external view returns (address) {
+        return i_owner;
+    }
 }
